@@ -1,0 +1,40 @@
+
+<div style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
+  <mat-form-field appearance="outline">
+    <mat-label>Chọn nhân viên</mat-label>
+    <mat-select [(ngModel)]="selectedEmp">
+      <mat-option *ngFor="let emp of empList" [value]="emp.empId">
+        {{emp.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Giờ checkin</mat-label>
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker>
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Giờ checkout</mat-label>
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker>
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  <button mat-raised-button color="warn" style="margin-top: 20px;">Huỷ</button>
+  <button mat-raised-button color="primary" style="margin-top: 20px;">Nhập</button>
+</div>
