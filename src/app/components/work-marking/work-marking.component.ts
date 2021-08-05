@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
-import { GET_ALL_EMP } from 'src/app/utils/api_url';
+import { EMP } from 'src/app/models/employee';
+import { EMPLOYEE } from 'src/app/utils/api_url';
 
 @Component({
   selector: 'app-work-marking',
@@ -25,14 +26,9 @@ export class WorkMarkingComponent implements OnInit {
   }
 
   getEmployeeList() {
-    this.httpClient.get<EMP[]>(GET_ALL_EMP).subscribe(result => {
+    this.httpClient.get<EMP[]>(EMPLOYEE).subscribe(result => {
       this.empList = result;
     })
   }
 
-}
-
-interface EMP {
-  empId: number, 
-  name: string
 }

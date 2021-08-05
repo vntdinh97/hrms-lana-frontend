@@ -16,6 +16,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
