@@ -20,6 +20,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DialogEmployeeComponent } from './components/quan-ly-nhan-vien/dialog-employee/dialog-employee.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HomeComponentComponent,
     QuanLyNhanVienComponent,
     ExcelExportComponent,
-    WorkMarkingComponent
+    WorkMarkingComponent,
+    DialogEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    DialogEmployeeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

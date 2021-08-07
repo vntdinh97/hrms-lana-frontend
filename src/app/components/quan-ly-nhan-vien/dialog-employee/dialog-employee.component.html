@@ -1,0 +1,20 @@
+<div>
+    <h3>{{title}}</h3>
+    <div *ngIf="['add', 'edit'].includes(data.action)">
+        <mat-form-field>
+            <mat-label>Tên nhân viên</mat-label>
+            <input matInput  [(ngModel)]="name"/>
+
+        </mat-form-field>
+
+    </div>
+
+    <div *ngIf="data.action === 'delete'">
+        <p>Bạn chắc chắn muốn xóa <b>{{data.name}}</b> chứ?</p>
+    </div>
+
+    <div>
+        <button mat-flat-button color="primary" (click)="add()">{{buttonName}}</button>
+        <button mat-flat-button>Hủy</button>
+    </div>
+</div>
