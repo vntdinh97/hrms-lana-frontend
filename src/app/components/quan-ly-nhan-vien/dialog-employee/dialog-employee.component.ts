@@ -3,24 +3,27 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMP } from 'src/app/models/employee';
-import { EMPLOYEE } from 'src/app/utils/api_url';
+import { EMPLOYEE_API } from 'src/app/utils/api_url';
+import { ComponentBase } from '../../component-base';
 
 @Component({
   selector: 'app-dialog-add-employee',
   templateUrl: './dialog-employee.component.html',
   styleUrls: ['./dialog-employee.component.scss']
 })
-export class DialogEmployeeComponent implements OnInit {
+export class DialogEmployeeComponent extends ComponentBase implements OnInit {
 
   name: string = '';
   buttonName: string;
   title: string;
 
   constructor(
-    private http: HttpClient, 
-    private snackBar: MatSnackBar,
+    public httpClient: HttpClient, 
+    public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { 
+      super(httpClient, snackBar);
+    }
 
   ngOnInit(): void {
     switch (this.data.action) {
@@ -44,36 +47,36 @@ export class DialogEmployeeComponent implements OnInit {
   add() {
     switch (this.data.action) {
       case 'add':
-        this.http.post<EMP>(EMPLOYEE, {name: this.name}).subscribe(res => {
-          if (res.id) {
-            this.snackBar.open("Thêm nhân viên","Thành công");
+        this.httpClient.post<EMP>(EMPLOYEE_API, {name: this.name}).subscribe(res => {
+          if (res.empId) {
+            this.notify("Thêm nhân viên thành công");
             this.dialogRef.close(true);
           } else {
-            this.snackBar.open("Thêm nhân viên","Lỗi!");
+            this.notify("Thêm nhân viên lỗi!");
             this.dialogRef.close(false);
           }
         })
         break;
       
       case 'edit':
-        this.http.put<EMP>(`${EMPLOYEE}/${this.data.emp.id}`, {id: this.data.emp.id, name: this.name}).subscribe(res => {
-          if (res.id) {
-            this.snackBar.open("Chỉnh sửa nhân viên","Thành công");
+        this.httpClient.put<EMP>(`${EMPLOYEE_API}/${this.data.emp.empId}`, {id: this.data.emp.id, name: this.name}).subscribe(res => {
+          if (res.empId) {
+            this.notify("Chỉnh sửa nhân viên thành công");
             this.dialogRef.close(true);
           } else {
-            this.snackBar.open("Chỉnh sửa nhân viên","Lỗi!");
+            this.notify("Chỉnh sửa nhân viên lỗi");
             this.dialogRef.close(false);
           }
         })
         break;
 
       default:
-        this.http.delete<EMP>(`${EMPLOYEE}/${this.data.emp.id}`).subscribe(res => {
-          if (res.id) {
-            this.snackBar.open("Thêm nhân viên","Thành công");
+        this.httpClient.delete<EMP>(`${EMPLOYEE_API}/${this.data.emp.empId}`).subscribe(res => {
+          if (res.empId) {
+            this.notify("Thêm nhân viên thành công");
             this.dialogRef.close(true);
           } else {
-            this.snackBar.open("Thêm nhân viên","Lỗi!");
+            this.notify("Thêm nhân viên lỗi!");
             this.dialogRef.close(false);
           }
         })

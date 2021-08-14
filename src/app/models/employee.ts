@@ -1,4 +1,4 @@
 export interface EMP {
-    id: number,
+    empId?: number,
     name: string
 }

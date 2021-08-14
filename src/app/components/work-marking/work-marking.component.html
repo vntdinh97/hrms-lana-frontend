@@ -9,11 +9,11 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Giờ checkin</mat-label>
-    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker>
+    <input matInput [(ngModel)]="checkIn" [ngxMatDatetimePicker]="pickerIn" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="pickerIn"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #pickerIn>
       <!-- Custom icon or text of Apply icon -->
       <ng-template>
         <!-- <mat-icon>star</mat-icon> -->
@@ -22,11 +22,11 @@
     </ngx-mat-datetime-picker>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Giờ checkout</mat-label>
-    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker>
+    <input [(ngModel)]="checkOut" matInput [ngxMatDatetimePicker]="pickerOut" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="pickerOut"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #pickerOut>
       <!-- Custom icon or text of Apply icon -->
       <ng-template>
         <!-- <mat-icon>star</mat-icon> -->
@@ -35,6 +35,11 @@
     </ngx-mat-datetime-picker>
   </mat-form-field>
 
-  <button mat-raised-button color="warn" style="margin-top: 20px;">Huỷ</button>
-  <button mat-raised-button color="primary" style="margin-top: 20px;">Nhập</button>
+  <mat-form-field appearance="outline" style="width: 500px;">
+    <mat-label>Ghi chú</mat-label>
+    <input matInput [(ngModel)]="remark" placeholder="Ghi chú">
+  </mat-form-field>
+
+  <button mat-raised-button color="warn" (click)="onClear()" style="margin-top: 20px;">Huỷ</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-top: 20px;">Nhập</button>
 </div>

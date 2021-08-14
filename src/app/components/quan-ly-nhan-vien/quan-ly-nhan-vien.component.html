@@ -23,8 +23,8 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Chức năng </th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon matTooltip="Xóa">delete</mat-icon>
-                <mat-icon matTooltip="Chỉnh sửa">mode_edit</mat-icon>
+                <mat-icon (click)="openDialogNhanVien('delete', element)" matTooltip="Xóa">delete</mat-icon>
+                <mat-icon (click)="openDialogNhanVien('edit', element)" matTooltip="Chỉnh sửa">mode_edit</mat-icon>
             </td>
         </ng-container>
 
