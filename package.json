@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "http-server-spa dist/hrms-lana-frontend index.html 4100",
+    "start": "http-server-spa dist/hrms-lana-frontend index.html $PORT",
     "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
     "test": "ng test",
     "lint": "ng lint",
