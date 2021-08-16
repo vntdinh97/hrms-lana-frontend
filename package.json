@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "http-server dist/",
-    "preinstall": "npm install -g http-server",
+    "start": "http-server-spa dist/",
+    "preinstall": "npm install -g http-server-spa",
     "postinstall": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
