@@ -1,0 +1,19 @@
+<div style="display: flex; flex-direction: column;">
+    <div class="header">
+      <p>Work marking</p>
+      <div>
+        <p style="">{{'123'}}</p>
+        <a>Đăng xuất</a>
+      </div>
+      
+    </div>
+    <div class="body">
+      <div class="navigation">
+        <button mat-raised-button color="primary" routerLink="/employee" routerLinkActive="active">Quản lý nhân viên</button>
+        <button mat-raised-button color="primary" routerLink="/work-marking" routerLinkActive="active">Nhập công</button>
+        <button mat-raised-button color="primary" routerLink="/export">Xuất excel</button>
+      </div>
+      
+    </div>
+    <router-outlet></router-outlet>
+  </div>

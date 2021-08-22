@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponentComponent } from './components/home-component/home-component.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { QuanLyNhanVienComponent } from './components/quan-ly-nhan-vien/quan-ly-nhan-vien.component';
@@ -23,15 +22,18 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DialogEmployeeComponent } from './components/quan-ly-nhan-vien/dialog-employee/dialog-employee.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponentComponent,
     QuanLyNhanVienComponent,
     ExcelExportComponent,
     WorkMarkingComponent,
-    DialogEmployeeComponent
+    DialogEmployeeComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   entryComponents: [
     DialogEmployeeComponent
