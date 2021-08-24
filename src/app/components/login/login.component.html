@@ -1,11 +1,24 @@
-<h3>Đăng nhập</h3>
-<mat-form-field appearance="outline">
-    <mat-hint>Username</mat-hint>
-    <input matInput [(ngModel)]="username"/>
-</mat-form-field>
-<mat-form-field appearance="outline">
-    <mat-hint>Password</mat-hint>
-    <input matInput type="password" input [(ngModel)]="password"/>
-</mat-form-field>
-<button mat-flat-button color="primary">Đăng nhập</button>
-<button mat-flat-button color="primary">Xóa</button>
+<div (keydown.enter)="onLogin()" class="parent">
+    <h3 class="title">{{mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}}</h3>
+    <mat-form-field appearance="outline">
+        <mat-label>Tên đăng nhập</mat-label>
+        <input matInput [(ngModel)]="username"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Mật khẩu</mat-label>
+        <input matInput type="password" input [(ngModel)]="password"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="mode === 'register'">
+        <mat-label>Xác nhận mật khẩu</mat-label>
+        <input matInput type="password" input [(ngModel)]="confirmPassword"/>
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="mode === 'register'">
+        <mat-label>Họ tên</mat-label>
+        <input matInput input [(name)]="name"/>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" (click)="onLogin()" style="margin-right: 30px;">Đăng nhập</button>
+        <button mat-flat-button color="primary" (click)="onRegister()">Đăng ký</button>
+    </div>
+</div>
+

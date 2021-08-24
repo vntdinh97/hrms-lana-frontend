@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMP } from 'src/app/models/employee';
 import { WORK } from 'src/app/models/work';
 import { EMPLOYEE_API, WORK_API } from 'src/app/utils/api_url';
+import { ComponentBase } from '../component-base';
 
 @Component({
   selector: 'app-work-marking',
   templateUrl: './work-marking.component.html',
   styleUrls: ['./work-marking.component.scss']
 })
-export class WorkMarkingComponent implements OnInit {
+export class WorkMarkingComponent extends ComponentBase implements OnInit {
 
   empList: EMP[] = [];
   selectedEmp: number = null;
@@ -21,7 +23,9 @@ export class WorkMarkingComponent implements OnInit {
   @ContentChild(MatFormFieldControl) _control: MatFormFieldControl<any>;
     @ViewChild(MatFormField) _matFormField: MatFormField;
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient, public snackBar: MatSnackBar) { 
+    super(httpClient, snackBar)
+  }
 
   ngOnInit(): void {
     this.getEmployeeList();
@@ -34,14 +38,22 @@ export class WorkMarkingComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.checkIn > this.checkOut || this.checkOut >= new Date()) {
+      this.notify('Chưa đúng ngày giờ');
+      return;
+    }
     const work: WORK = {
       checkIn: this.checkIn,
       checkOut: this.checkOut,
       empId: this.selectedEmp,
       remark: this.remark,
     }
-    this.httpClient.post(WORK_API, work).subscribe(res => {
-
+    this.httpClient.post<WORK>(WORK_API, work).subscribe(res => {
+      if (res && res.shiftId) {
+        this.notify('Nhập thành công')
+      } else {
+        this.notify('Thử lại')
+      }
     })
   }
 

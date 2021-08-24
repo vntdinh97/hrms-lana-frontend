@@ -1,19 +1,20 @@
 <div style="display: flex; flex-direction: column;">
-    <div class="header">
-      <p>Work marking</p>
-      <div>
-        <p style="">{{'123'}}</p>
-        <a>Đăng xuất</a>
-      </div>
-      
+  <div class="header">
+    <p>Work marking</p>
+    <div class="user">
+      <mat-icon style="color: white;">person</mat-icon>
+      <h4 style="margin: 0px 10px; color: white">{{user.name}}</h4>
+      <a style="color: white; text-decoration: underline; cursor: pointer;" (click)="onLogout()">Đăng xuất</a>
     </div>
-    <div class="body">
-      <div class="navigation">
-        <button mat-raised-button color="primary" routerLink="/employee" routerLinkActive="active">Quản lý nhân viên</button>
-        <button mat-raised-button color="primary" routerLink="/work-marking" routerLinkActive="active">Nhập công</button>
-        <button mat-raised-button color="primary" routerLink="/export">Xuất excel</button>
-      </div>
-      
-    </div>
-    <router-outlet></router-outlet>
+
   </div>
+  <div class="body">
+    <div class="navigation">
+      <button *ngIf="user.role === 0" mat-raised-button color="primary" routerLink="/employee">Quản lý nhân viên</button>
+      <button mat-raised-button color="primary" routerLink="/work-marking" routerLinkActive="active">Nhập công</button>
+      <button mat-raised-button color="primary" routerLink="/export">Xuất excel</button>
+    </div>
+
+  </div>
+  <router-outlet></router-outlet>
+</div>

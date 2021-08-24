@@ -6,14 +6,15 @@ import { LoginComponent } from './components/login/login.component';
 import { QuanLyNhanVienComponent } from './components/quan-ly-nhan-vien/quan-ly-nhan-vien.component';
 import { WorkMarkingComponent } from './components/work-marking/work-marking.component';
 import { AuthGuard } from './utils/auth.guard';
+import { RoleGuard } from './utils/role.guard';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'home', component: HomeComponent, children: [
+    path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: 'work-marking', component: WorkMarkingComponent },
-      { path: 'employee', component: QuanLyNhanVienComponent },
+      { path: 'employee', component: QuanLyNhanVienComponent, canActivate: [RoleGuard]  },
       { path: 'export', component: ExcelExportComponent },
     ]
   }
