@@ -45,7 +45,7 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
     const work: WORK = {
       checkIn: this.checkIn,
       checkOut: this.checkOut,
-      empId: this.selectedEmp,
+      empId: this.getUserInfo().empId,
       remark: this.remark,
     }
     this.httpClient.post<WORK>(WORK_API, work).subscribe(res => {

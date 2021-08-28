@@ -1,1 +1,32 @@
-<p>excel-export works!</p>
+<div>
+  <div *ngIf="getUserInfo().role == 0" style="display: flex; justify-content: center;">
+    <mat-form-field appearance="outline">
+      <mat-label>Chọn nhân viên</mat-label>
+      <mat-select [(ngModel)]="selectedEmp" disableRipple>
+        <mat-option *ngFor="let emp of empList" [value]="emp.empId">{{emp.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <button mat-flat-button>Tìm kiếm</button>
+  </div>
+  <table mat-table style="width: 100%;" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="checkin">
+      <th mat-header-cell *matHeaderCellDef>Giờ vào</th>
+      <td mat-cell *matCellDef="let element"> {{element.checkIn}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="checkout">
+      <th mat-header-cell *matHeaderCellDef> Giờ ra </th>
+      <td mat-cell *matCellDef="let element"> {{element.checkOut}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef> Ghi chú </th>
+      <td mat-cell *matCellDef="let element"> {{element.note}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

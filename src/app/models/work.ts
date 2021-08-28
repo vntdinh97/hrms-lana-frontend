@@ -4,4 +4,5 @@ export interface WORK {
   checkOut: Date;
   remark?: string;
   empId: number;
+  note?: string;
 }
