@@ -48,5 +48,4 @@ export class QuanLyNhanVienComponent extends ComponentBase implements OnInit {
       this.getListEmp()
     })
   } 
-
 }

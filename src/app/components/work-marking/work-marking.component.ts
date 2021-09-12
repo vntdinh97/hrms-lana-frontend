@@ -38,10 +38,10 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
   }
 
   onSubmit() {
-    if (this.checkIn > this.checkOut || this.checkOut >= new Date()) {
-      this.notify('Chưa đúng ngày giờ');
-      return;
-    }
+    // if (this.checkIn > this.checkOut || this.checkOut >= new Date()) {
+    //   this.notify('Chưa đúng ngày giờ');
+    //   return;
+    // }
     const work: WORK = {
       checkIn: this.checkIn,
       checkOut: this.checkOut,
@@ -49,8 +49,11 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
       remark: this.remark,
     }
     this.httpClient.post<WORK>(WORK_API, work).subscribe(res => {
-      if (res && res.shiftId) {
-        this.notify('Nhập thành công')
+      if (res && res[0].shiftId) {
+        this.notify('Nhập thành công');
+        this.checkOut = null;
+        this.checkIn = null;
+        this.remark = '';
       } else {
         this.notify('Thử lại')
       }
