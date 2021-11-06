@@ -9,7 +9,7 @@
     
     <button mat-flat-button>Tìm kiếm</button>
   </div>
-  <button mat-flat-button>Xuất excel</button>
+  <button mat-flat-button (click)="export()">Xuất excel</button>
   <table mat-table style="width: 100%;" [dataSource]="dataSource">
 
     <ng-container matColumnDef="checkin">
