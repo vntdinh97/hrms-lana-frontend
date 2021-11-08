@@ -4,7 +4,7 @@
     <mat-label>Giờ checkin</mat-label>
     <input matInput [(ngModel)]="checkIn" [ngxMatDatetimePicker]="pickerIn" placeholder="Choose a date">
     <mat-datepicker-toggle matSuffix [for]="pickerIn"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #pickerIn>
+    <ngx-mat-datetime-picker #pickerIn [showSeconds]="false">
       <!-- Custom icon or text of Apply icon -->
       <ng-template>
         <!-- <mat-icon>star</mat-icon> -->
@@ -17,7 +17,7 @@
     <mat-label>Giờ checkout</mat-label>
     <input [(ngModel)]="checkOut" matInput [ngxMatDatetimePicker]="pickerOut" placeholder="Choose a date">
     <mat-datepicker-toggle matSuffix [for]="pickerOut"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #pickerOut>
+    <ngx-mat-datetime-picker #pickerOut [showSeconds]="false">
       <!-- Custom icon or text of Apply icon -->
       <ng-template>
         <!-- <mat-icon>star</mat-icon> -->
