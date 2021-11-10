@@ -24,6 +24,8 @@ import { DialogEmployeeComponent } from './components/quan-ly-nhan-vien/dialog-e
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditWorkComponent } from './components/excel-export/edit-work/edit-work.component';
+import { DeleteWorkComponent } from './components/excel-export/delete-work/delete-work.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { HomeComponent } from './components/home/home.component';
     WorkMarkingComponent,
     DialogEmployeeComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EditWorkComponent,
+    DeleteWorkComponent
   ],
   imports: [
     BrowserModule,

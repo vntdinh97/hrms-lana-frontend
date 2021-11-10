@@ -18,10 +18,17 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
   selectedEmp: number = null;
   checkIn: Date;
   checkOut: Date;
-  remark: string = '';
-
-  @ContentChild(MatFormFieldControl) _control: MatFormFieldControl<any>;
-    @ViewChild(MatFormField) _matFormField: MatFormField;
+  types: string[] = [
+    'Do inspect',
+    'In office to do timesheet, do claim',
+    'Office + Traveling to',
+    'Compensatory day',
+    'Annual leave',
+    'Khác ...'
+  ]
+  selectedType = this.types[0];
+  remark: string = this.types[0];
+  isRemarkDisabled: boolean = false;
 
   constructor(public httpClient: HttpClient, public snackBar: MatSnackBar) { 
     super(httpClient, snackBar)
@@ -58,6 +65,16 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
         this.notify('Thử lại')
       }
     })
+  }
+
+  onChangeType() {
+    this.remark = this.selectedType;
+    this.isRemarkDisabled = false;
+    if (['Compensatory day', 'Annual leave'].includes(this.selectedType)) {
+      this.isRemarkDisabled = true;
+    } else if (this.selectedType === 'Khác ...') {
+      this.remark = ''; 
+    }
   }
 
   onClear() {

@@ -26,9 +26,18 @@
     </ngx-mat-datetime-picker>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" style="width: 500px;">
+  <mat-form-field appearance="outline">
+    <mat-label>Loại</mat-label>
+    <mat-select [(value)]="selectedType" (selectionChange)="onChangeType()">
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  appearance="outline" style="width: 500px;">
     <mat-label>Ghi chú</mat-label>
-    <input matInput [(ngModel)]="remark" placeholder="Ghi chú">
+    <input matInput [disabled]="isRemarkDisabled" [(ngModel)]="remark" placeholder="Ghi chú">
   </mat-form-field>
 
   <button mat-raised-button color="warn" (click)="onClear()" style="margin-top: 20px;">Huỷ</button>
