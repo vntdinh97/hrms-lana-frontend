@@ -1,1 +1,45 @@
-<p>edit-work works!</p>
+
+<div style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
+  <mat-form-field appearance="outline">
+    <mat-label>Giờ checkin</mat-label>
+    <input matInput [(ngModel)]="checkIn" [ngxMatDatetimePicker]="pickerIn" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="pickerIn"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #pickerIn [showSeconds]="false">
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Giờ checkout</mat-label>
+    <input [(ngModel)]="checkOut" matInput [ngxMatDatetimePicker]="pickerOut" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="pickerOut"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #pickerOut [showSeconds]="false">
+      <!-- Custom icon or text of Apply icon -->
+      <ng-template>
+        <!-- <mat-icon>star</mat-icon> -->
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Loại</mat-label>
+    <mat-select [(value)]="selectedType" (selectionChange)="onChangeType()">
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  appearance="outline" style="width: 500px;">
+    <mat-label>Ghi chú</mat-label>
+    <input matInput [disabled]="isRemarkDisabled" [(ngModel)]="remark" placeholder="Ghi chú">
+  </mat-form-field>
+
+  <button mat-raised-button color="warn" (click)="onCancel()" style="margin-top: 20px;">Huỷ</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-top: 20px;">Nhập</button>
+</div>

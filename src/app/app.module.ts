@@ -61,7 +61,9 @@ import { DeleteWorkComponent } from './components/excel-export/delete-work/delet
     MatDialogModule,
   ],
   entryComponents: [
-    DialogEmployeeComponent
+    DialogEmployeeComponent,
+    EditWorkComponent,
+    DeleteWorkComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

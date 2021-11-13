@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-work',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteWorkComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DeleteWorkComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  onHandleCancel() {
+    this.dialogRef.close(false)
+  }
+
+  onHandleConfirm() {
+    this.dialogRef.close(true)
   }
 
 }
