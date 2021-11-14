@@ -1,0 +1,31 @@
+<div style="display: flex; flex-direction: column;">
+    <mat-form-field appearance="outline">
+        <mat-label>Loại</mat-label>
+        <mat-select (selectionChange)="onChangeType()" [(value)]="type">
+            <mat-option value="annual">Hằng năm</mat-option>
+            <mat-option value="once">Một lần</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Ngày</mat-label>
+        <mat-select [(value)]="holiday.date">
+            <mat-option *ngFor="let date of dateList" [value]="date">{{date}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Tháng</mat-label>
+        <mat-select [(value)]="holiday.month">
+            <mat-option *ngFor="let month of monthList" [value]="month">{{month}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="type == 'once'" appearance="outline">
+        <mat-label>Năm</mat-label>
+        <mat-select [(value)]="holiday.year">
+            <mat-option *ngFor="let year of yearList" [value]="year">{{year}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div style="display: flex; justify-content: space-between;">
+        <button mat-flat-button color="primary" (click)="onHandleAction()">{{action === 'add' ? 'Thêm' : 'Sửa'}}</button>
+        <button mat-flat-button (click)="onHandleCancel()">Hủy</button>
+    </div>
+</div>

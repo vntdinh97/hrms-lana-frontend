@@ -10,7 +10,8 @@
   </div>
   <div class="body">
     <div class="navigation">
-      <button *ngIf="user.role === 0" mat-raised-button color="primary" routerLink="/employee">Quản lý nhân viên</button>
+      <button *ngIf="user.role === 'ADMIN'" mat-raised-button color="primary" routerLink="/employee">Quản lý nhân viên</button>
+      <button *ngIf="user.role === 'ADMIN'" mat-raised-button color="primary" routerLink="/holiday-config">Cấu hình ngày nghỉ lễ</button>
       <button mat-raised-button color="primary" routerLink="/work-marking" routerLinkActive="active">Nhập công</button>
       <button mat-raised-button color="primary" routerLink="/export">Xem lịch sử công</button>
     </div>

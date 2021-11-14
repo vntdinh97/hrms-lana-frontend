@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="getUserInfo().role == 0" style="display: flex; justify-content: center;">
+  <div *ngIf="getUserInfo().role == 'ADMIN'" style="display: flex; justify-content: center;">
     <mat-form-field appearance="outline">
       <mat-label>Chọn nhân viên</mat-label>
       <mat-select [(ngModel)]="selectedEmp" disableRipple>

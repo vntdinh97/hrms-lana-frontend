@@ -10,7 +10,7 @@ export class RoleGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = JSON.parse(localStorage.getItem("user"));
-        if (user.role == 0) {
+        if (user.role == "ADMIN") {
             // authorised so return true
             return true;
         }

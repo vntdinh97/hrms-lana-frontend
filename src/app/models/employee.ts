@@ -2,5 +2,5 @@ export interface EMP {
     empId?: number,
     name: string
     username: string;
-    role?: number;
+    role?: string;
 }
