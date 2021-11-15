@@ -14,7 +14,7 @@ import { AddHolidayComponent } from './add-holiday/add-holiday.component';
 })
 export class HolidayConfigComponent extends ComponentBase implements OnInit {
 
-  displayedColumns: string[] = ['ordinal', 'day', 'isAnnual']
+  displayedColumns: string[] = ['ordinal', 'day', 'isAnnual', 'action']
   dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   constructor(public http: HttpClient, public snackBar: MatSnackBar, public dialog: MatDialog) {
     super(http, snackBar);
@@ -42,11 +42,20 @@ export class HolidayConfigComponent extends ComponentBase implements OnInit {
   }
 
   onHandleEdit(holiday: any) {
-
+    this.dialog.open(AddHolidayComponent, {data: {action: 'edit', holiday}}).afterClosed().subscribe(() => {
+      this.getHoliday();
+    })
   }
 
   onHandleDelete(holiday: any) {
-
+    this.http.delete(`${HOLIDAY}/${holiday.dayId}`).subscribe(res => {
+      if (res) {
+        this.snackBar.open("Xoá thành công");
+      } else {
+        this.snackBar.open("Xoá không thành công")
+      }
+      this.getHoliday();
+    })
   }
 
 }

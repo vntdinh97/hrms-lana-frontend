@@ -42,7 +42,7 @@ import { AddHolidayComponent } from './components/holiday-config/add-holiday/add
     EditWorkComponent,
     DeleteWorkComponent,
     HolidayConfigComponent,
-    AddHolidayComponent
+    AddHolidayComponent,
   ],
   imports: [
     BrowserModule,

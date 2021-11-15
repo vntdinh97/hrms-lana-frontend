@@ -30,8 +30,9 @@ export class AddHolidayComponent extends ComponentBase implements OnInit {
     }
 
   ngOnInit(): void {
-    if (this.data) {
+    if (this.data.action == 'edit') {
       this.action = this.data.action;
+      this.holiday = {...this.data.holiday}
     }
   }
 
@@ -45,7 +46,7 @@ export class AddHolidayComponent extends ComponentBase implements OnInit {
         }
       })
     } else {
-      this.http.put(HOLIDAY, this.holiday).subscribe(res => {
+      this.http.put(`${HOLIDAY}/${this.data.holiday.dayId}`, this.holiday).subscribe(res => {
         if (res) {
           this.dialogRef.close(true)
         } else {
