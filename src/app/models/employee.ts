@@ -3,4 +3,6 @@ export interface EMP {
     name: string
     username: string;
     role?: string;
+    isAddin: boolean;
+    isLunchTime: boolean;
 }

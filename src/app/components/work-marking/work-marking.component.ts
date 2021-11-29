@@ -29,6 +29,8 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
   selectedType = this.types[0];
   remark: string = this.types[0];
   isRemarkDisabled: boolean = false;
+  isAddin: boolean = false;
+  isLunchTime: boolean = false;
 
   constructor(public httpClient: HttpClient, public snackBar: MatSnackBar) { 
     super(httpClient, snackBar)
@@ -45,15 +47,17 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
   }
 
   onSubmit() {
-    // if (this.checkIn > this.checkOut || this.checkOut >= new Date()) {
-    //   this.notify('Chưa đúng ngày giờ');
-    //   return;
-    // }
+    if (this.checkIn > this.checkOut) {
+      this.notify('Bạn nhập chưa đúng điều kiện, hãy thử lại');
+      return;
+    }
     const work: WORK = {
       checkIn: this.checkIn,
       checkOut: this.checkOut,
       empId: this.getUserInfo().empId,
       remark: this.remark,
+      addin: this.isAddin,
+      lunchTime: this.isLunchTime
     }
     this.httpClient.post<WORK>(WORK_API, work).subscribe(res => {
       if (res && res[0].shiftId) {
@@ -61,6 +65,8 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
         this.checkOut = null;
         this.checkIn = null;
         this.remark = '';
+        this.isAddin = false;
+        this.isLunchTime = false;
       } else {
         this.notify('Thử lại')
       }
@@ -82,5 +88,8 @@ export class WorkMarkingComponent extends ComponentBase implements OnInit {
     this.checkOut = null;
     this.checkIn = null;
     this.remark = '';
+    this.isLunchTime = false;
+    this.isAddin = false;
+    this.selectedType = 'Do inspect'
   }
 }

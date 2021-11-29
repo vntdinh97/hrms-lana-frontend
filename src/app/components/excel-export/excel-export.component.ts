@@ -22,7 +22,7 @@ import { DeleteWorkComponent } from './delete-work/delete-work.component';
 })
 export class ExcelExportComponent extends ComponentBase implements OnInit {
   selectedEmp: number;
-  displayedColumns: string[] = ['checkin', 'checkout', 'note', 'action'];
+  displayedColumns: string[] = ['checkin', 'checkout', 'addin', 'lunchTime', 'note', 'action'];
   dataSource: MatTableDataSource<WORK> = new MatTableDataSource<WORK>([]);
   empList: EMP[] = [];
 

@@ -35,6 +35,11 @@
     </mat-select>
   </mat-form-field>
 
+  <div style="display: flex; justify-content: space-between; width: 200px;">
+    <mat-checkbox [(ngModel)]="isAddin">Add-in</mat-checkbox>
+    <mat-checkbox [(ngModel)]="isLunchTime">Lunch time</mat-checkbox>
+  </div>
+
   <mat-form-field  appearance="outline" style="width: 500px;">
     <mat-label>Ghi chú</mat-label>
     <input matInput [disabled]="isRemarkDisabled" [(ngModel)]="remark" placeholder="Ghi chú">

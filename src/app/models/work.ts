@@ -5,4 +5,6 @@ export interface WORK {
   remark?: string;
   empId: number;
   note?: string;
+  addin: boolean;
+  lunchTime: boolean;
 }

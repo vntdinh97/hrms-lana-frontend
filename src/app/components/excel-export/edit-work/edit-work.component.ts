@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-work',
@@ -20,12 +21,17 @@ export class EditWorkComponent implements OnInit {
   selectedType: string = null;
   remark: string;
   isRemarkDisabled: boolean = false;
+  isAddin: boolean = false;
+  isLunchTime: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<EditWorkComponent>,
+    public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.checkOut = new Date(this.data.shift.checkOut)
       this.checkIn = new Date(this.data.shift.checkIn)
       this.remark = this.data.shift.remark;
+      this.isAddin = this.data.shift.addin;
+      this.isLunchTime = this.data.shift.lunchTime;
     }
 
   ngOnInit(): void {
@@ -39,7 +45,13 @@ export class EditWorkComponent implements OnInit {
     const result = {
       checkIn: this.checkIn,
       checkOut: this.checkOut,
-      remark: this.remark
+      remark: this.remark,
+      addin: this.isAddin,
+      lunchTime: this.isLunchTime
+    }
+    if (this.checkIn >= this.checkOut) {
+      this.snackBar.open('Bạn nhập chưa đúng điều kiện, hãy thử lại');
+      return;
     }
     this.dialogRef.close(result)
   }
