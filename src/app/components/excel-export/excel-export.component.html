@@ -1,15 +1,26 @@
 <div>
-  <div *ngIf="getUserInfo().role == 'ADMIN'" style="display: flex; justify-content: center;">
-    <mat-form-field appearance="outline">
+  <div>
+    <mat-form-field *ngIf="getUserInfo().role == 'ADMIN'" appearance="outline">
       <mat-label>Chọn nhân viên</mat-label>
       <mat-select [(ngModel)]="selectedEmp" disableRipple>
         <mat-option *ngFor="let emp of empList" [value]="emp.empId">{{emp.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    
-    <button mat-flat-button>Tìm kiếm</button>
+    <mat-form-field appearance="outline" style="margin: 0px 20px">
+      <mat-label>Tháng</mat-label>
+      <mat-select [(ngModel)]="selectedMonth" disableRipple>
+        <mat-option *ngFor="let month of monthList" [value]="month">{{month}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin: 0px 10px">
+      <mat-label>Năm</mat-label>
+      <mat-select [(ngModel)]="selectedYear" disableRipple>
+        <mat-option *ngFor="let year of yearList" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button (click)="getWorks()">Tìm</button>
+    <button mat-flat-button (click)="export()">Xuất excel</button>
   </div>
-  <button mat-flat-button (click)="export()">Xuất excel</button>
   <table mat-table style="width: 100%;" [dataSource]="dataSource">
 
     <ng-container matColumnDef="checkin">

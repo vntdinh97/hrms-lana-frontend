@@ -38,8 +38,6 @@ export class QuanLyNhanVienComponent extends ComponentBase implements OnInit {
 
   openDialogNhanVien(action: string, emp?: EMP) {
     const dialog = this.dialog.open(DialogEmployeeComponent, {
-      width: '500px',
-      height: '300px',
       data: {
         emp, action
       }

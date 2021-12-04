@@ -26,6 +26,11 @@ export class ExcelExportComponent extends ComponentBase implements OnInit {
   dataSource: MatTableDataSource<WORK> = new MatTableDataSource<WORK>([]);
   empList: EMP[] = [];
 
+  yearList: number[] = [new Date().getFullYear(), new Date().getFullYear() - 1]
+  monthList: number[] = Array.from({length: 12}, (_, i) => i + 1);
+  selectedMonth: number = new Date().getMonth() + 1;
+  selectedYear: number = new Date().getFullYear();
+
   constructor(public http: HttpClient, public snackBar: MatSnackBar,
     public dialog: MatDialog) {
     super(http, snackBar);
@@ -33,11 +38,12 @@ export class ExcelExportComponent extends ComponentBase implements OnInit {
 
   ngOnInit(): void {
     this.getWorks();
+    this.getListNhanVien();
   }
 
   getWorks() {
-    const empId = this.getUserInfo().empId;
-    this.http.get<WORK[]>(`${WORK_API}/${empId}`).subscribe((res) => {
+    const empId = this.selectedEmp || this.getUserInfo().empId;
+    this.http.get<WORK[]>(`${WORK_API}/getShiftByMonthAndYear/${empId}/${this.selectedYear}/${this.selectedMonth}`).subscribe((res) => {
       if (res) {
         this.dataSource.data = res;
       }
@@ -53,11 +59,9 @@ export class ExcelExportComponent extends ComponentBase implements OnInit {
   }
 
   export() {
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth() + 1;
     this.http
       .get(
-        `${WORK_API}/exportExcel/${this.getUserInfo().empId}/${year}/${month}`,
+        `${WORK_API}/exportExcel/${this.getUserInfo().empId}/${this.selectedYear}/${this.selectedMonth}`,
         { responseType: 'blob' }
       )
       .subscribe(
@@ -66,7 +70,7 @@ export class ExcelExportComponent extends ComponentBase implements OnInit {
           if (newBlob.size != 0) {
             saveAs(
               newBlob,
-              `TS_${year}_${month}_${this.getUserInfo().name}.xlsx`
+              `TS_${this.selectedYear}_${this.selectedMonth}_${this.getUserInfo().name}.xlsx`
             );
           } else {
             this.snackBar.open(
